@@ -23,7 +23,7 @@ jobs:
         dotnet-version: 6.0.x
         source-url: https://nuget.pkg.github.com/shoesheill/index.json
       env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NUGET_AUTH_TOKEN: ${{secrets.NUGETTOKEN}}
     - name: Restore dependencies
       run: dotnet restore
     
