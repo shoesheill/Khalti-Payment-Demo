@@ -77,6 +77,7 @@ namespace Khalti_Payment_Demo.Controllers
             if (response != null && !string.IsNullOrEmpty(response.status) && response.status.ToLower() == "completed")
             {
                 ViewBag.Message = string.Format("Payment with khalti completed successfully with pidx: {0} and amount: {1}", response.pidx, response.total_amount);
+                //read dynamic object respons
                 ///Verify Payment Amount on ProcessPayment and total_amount on verification response
             }
             else
