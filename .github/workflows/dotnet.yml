@@ -11,22 +11,18 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+    - uses: actions/checkout@master # Checkout the master branch
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1 # Setup .NET Core
       with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+        dotnet-version: 3.1.300 # Change to your version of .NET Core
+    - name: Build with dotnet
+      run: dotnet build --configuration Release 
+    - name: Publish Blazor webassembly using dotnet 
+      #create Blazor WebAssembly dist output folder in the project directory
+      run: dotnet publish -c Release --no-build -o publishoutput # Don't build again, just publish
     - name: Publish generated Blazor webassembly to Netlify
       uses: netlify/actions/cli@master #uses Netlify Cli actions
       env: # These are the environment variables added in GitHub Secrets for this repo
